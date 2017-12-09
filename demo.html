@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>demo</title>
+	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="riny.modal.js"></script>
+	<style>
+	body,div,ul,li{
+		margin:0;
+		padding:0;
+	}
+	ul{
+		list-style:none;
+	}
+	.list{
+		font-size:0;
+		padding:5px;
+	}
+	.list_item{
+		font-size:14px;
+		display:inline-block;
+		width:calc( 50% - 10px );
+		width:-webkit-calc( 50% - 10px );
+		height:100px;
+		background-color:#ccc;
+		margin:5px;
+		line-height:100px;
+		text-align:center;
+	}
+	</style>
+</head>
+<body>
+	<ul class="list" id="list"></ul>
+	<script>
+	var list=$('#list');
+	var html;
+	for(var i=0;i<50;i++){
+		html+='<li class="list_item">'+(i+1)+'</li>';
+	};
+	list.append(html);
+
+	$(function(){
+		//实例化模态层
+		var modal=new rinyModal('body',{
+			show:function(){
+				console.log('show');
+			},
+			hide:function(){
+				console.log('hide');
+			}
+		});
+
+		$('.list_item').on('click',function(e){
+			//显示模态层
+			modal.showModal();
+		});
+
+		$('.riny_modal').on('click',function(e){
+			//隐藏模态层
+			modal.hideModal();
+		});
+	});
+	</script>
+</body>
+</html>
